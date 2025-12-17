@@ -1,0 +1,125 @@
+/* Animaciones e iconos (la fuente Montserrat se carga desde index.html) */
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
+@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"; 
+
+/* --- 1. Variables de Color Corporativas --- */
+:root {
+    --bs-primary-custom: #1a75ff; 
+    --bs-accent: #00bcd4; 
+    --bs-dark-card: #203554;
+    --bs-text-light: #f8f9fa;
+    /* Nuevo: Fondo principal muy claro (casi blanco/azul) */
+    --bg-blue-light: #e9f0ff; /* Azul muy suave */
+    /* Overlay para el contenido del video */
+    --overlay-color: rgba(0, 0, 0, 0.4); /* Overlay más suave para mostrar el video */
+}
+
+/* --- 2. Contenedor Principal (Ahora Azul Claro) --- */
+.bg-blue-light {
+    background-color: var(--bg-blue-light) !important;
+}
+
+/* Asegura que el contenedor principal y la fila ocupen toda la altura */
+#login-section {
+    padding: 0 !important;
+}
+.container-fluid, .row, .video-column-animated, .login-column-right {
+    height: 100%;
+}
+/* La columna del formulario (derecha) debe ser blanca */
+.login-column-right {
+    background-color: white !important;
+}
+
+
+/* --- 3. Configuración del Video (Ahora restringido a la Columna Izquierda) --- */
+.video-column-animated {
+    /* Fondo oscuro de respaldo si el video falla */
+    background-color: #0f1c3a; 
+}
+
+#bg-video {
+    /* Quitar absolute del body y ponerlo en la columna */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    /* Ajustes para el video: lo hacemos más brillante ya que ahora es el foco */
+    filter: brightness(0.8) contrast(1.1); 
+}
+
+/* Contenedor para el texto superpuesto en el video */
+.overlay-video-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)); /* Degradado sutil en la parte inferior */
+    z-index: 1;
+    /* Añadir un sutil borde azul en la división */
+    border-right: 5px solid var(--bs-primary-custom); 
+}
+
+/* --- 4. Tarjeta de Login (Ahora sin fondo blanco propio, usa el de la columna) --- */
+.login-content-wrapper {
+    /* El contenido del formulario se centra en la columna */
+    max-width: 380px; /* Limita el ancho del formulario para mejor UX */
+}
+
+/* Quitamos el fondo y el borde de la tarjeta anterior, ya que la columna es blanca */
+.login-card-animated {
+    background: none !important;
+    border: none !important; 
+    box-shadow: none !important;
+    padding: 0 !important;
+    transform: none !important;
+}
+.login-card-animated:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Animaciones del logo y botón (Mantenidas) */
+.btn-primary-custom.animate__pulse {
+    animation-delay: 2s; 
+    animation-iteration-count: infinite; 
+    animation-duration: 4s;
+}
+
+/* El resto de los estilos de botones, alertas e inputs se mantienen igual */
+
+/* --- 5. Estilos de Alertas Personalizadas --- */
+.alert-danger-custom {
+    background-color: #ffe0e6; 
+    color: #cc0033; 
+    border-color: #ffb3c0;
+    border-left: 5px solid #cc0033; 
+    font-weight: 600;
+}
+.alert-warning-custom {
+    background-color: #fff8e1; 
+    color: #ff9800; 
+    border-color: #ffecb3;
+    border-left: 5px solid #ff9800;
+    font-weight: 600;
+}
+
+.text-primary-custom {
+    color: var(--bs-primary-custom) !important;
+}
+.text-accent {
+    color: var(--bs-accent) !important;
+}
+.btn-primary-custom:hover {
+    background-color: var(--bs-accent);
+    border-color: var(--bs-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 117, 255, 0.4); 
+}

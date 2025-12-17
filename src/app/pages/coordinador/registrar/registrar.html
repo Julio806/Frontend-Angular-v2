@@ -1,0 +1,169 @@
+<div class="card">
+  <h3>Registro de Proyectos</h3>
+
+  <!-- Mensajes globales -->
+  <div *ngIf="mensajeOk" class="alert alert-success">
+    {{ mensajeOk }}
+  </div>
+  <div *ngIf="mensajeError" class="alert alert-danger">
+    {{ mensajeError }}
+  </div>
+
+  <form #f="ngForm" (ngSubmit)="registrarProyecto(f)">
+
+    <!-- Nombre del proyecto -->
+    <div class="form-group">
+      <label>Nombre del proyecto</label>
+      <input type="text"
+             name="nombre"
+             [(ngModel)]="proyecto.nombre"
+             #nombre="ngModel"
+             required
+             minlength="3">
+      <div class="error" *ngIf="(nombre.invalid && (nombre.touched || f.submitted))">
+        <small *ngIf="nombre.errors?.['required']">El nombre es obligatorio.</small>
+        <small *ngIf="nombre.errors?.['minlength']">Debe tener al menos 3 caracteres.</small>
+      </div>
+    </div>
+
+    <!-- Actividad / subtema -->
+    <div class="form-group">
+      <label>Actividad / Subtema</label>
+      <select name="actividad"
+              [(ngModel)]="proyecto.actividad"
+              #actividad="ngModel"
+              required>
+        <option value="" disabled selected>Seleccione una actividad</option>
+        <option value="Siembra">Siembra</option>
+        <option value="Crecimiento del cafeto">Crecimiento del cafeto</option>
+        <option value="Floración">Floración</option>
+        <option value="Desarrollo del fruto (cereza)">Desarrollo del fruto (cereza)</option>
+        <option value="Cosecha">Cosecha</option>
+        <option value="Lavado">Lavado</option>
+        <option value="Proceso natural (secado)">Proceso natural (secado)</option>
+        <option value="Despulpe">Despulpe</option>
+        <option value="Trilla y clasificación">Trilla y clasificación</option>
+        <option value="Almacenamiento">Almacenamiento</option>
+        <option value="Distribución/exportación">Distribución/exportación</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+      <div class="error" *ngIf="(actividad.invalid && (actividad.touched || f.submitted))">
+        <small>La actividad es obligatoria.</small>
+      </div>
+    </div>
+
+    <!-- Necesidad -->
+    <div class="form-group">
+      <label>Necesidad que atiende</label>
+      <input type="text"
+             name="necesidad"
+             [(ngModel)]="proyecto.necesidad"
+             #necesidad="ngModel"
+             required>
+      <div class="error" *ngIf="(necesidad.invalid && (necesidad.touched || f.submitted))">
+        <small>La necesidad es obligatoria.</small>
+      </div>
+    </div>
+
+    <!-- Empresa vinculada -->
+    <div class="form-group">
+      <label>Empresa vinculada</label>
+      <input type="text"
+             name="empresaVinculada"
+             [(ngModel)]="proyecto.empresaVinculada"
+             #empresaVinculada="ngModel"
+             required>
+      <div class="error" *ngIf="(empresaVinculada.invalid && (empresaVinculada.touched || f.submitted))">
+        <small>La empresa vinculada es obligatoria.</small>
+      </div>
+    </div>
+
+    <!-- Estado del proyecto -->
+    <div class="form-group">
+      <label>Estado del proyecto</label>
+      <select name="estadoProyecto"
+              [(ngModel)]="proyecto.estadoProyecto"
+              #estadoProyecto="ngModel"
+              required>
+        <option value="" disabled selected>Selecciona un estado</option>
+        <option value="En curso">En curso</option>
+        <option value="Finalizado">Finalizado</option>
+        <option value="En planeación">En planeación</option>
+      </select>
+      <div class="error" *ngIf="(estadoProyecto.invalid && (estadoProyecto.touched || f.submitted))">
+        <small>El estado del proyecto es obligatorio.</small>
+      </div>
+    </div>
+
+    <!-- Fechas -->
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Fecha de inicio</label>
+        <input type="date"
+               name="fechaInicio"
+               [(ngModel)]="proyecto.fechaInicio"
+               #fechaInicio="ngModel"
+               required>
+        <div class="error" *ngIf="(fechaInicio.invalid && (fechaInicio.touched || f.submitted))">
+          <small>La fecha de inicio es obligatoria.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Fecha de fin</label>
+        <input type="date"
+               name="fechaFin"
+               [(ngModel)]="proyecto.fechaFin"
+               #fechaFin="ngModel"
+               required>
+        <div class="error" *ngIf="(fechaFin.invalid && (fechaFin.touched || f.submitted))">
+          <small>La fecha de fin es obligatoria.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Descripción -->
+    <div class="form-group">
+      <label>Descripción del proyecto</label>
+      <textarea name="descripcion"
+                [(ngModel)]="proyecto.descripcion"
+                #descripcion="ngModel"
+                rows="4"
+                required
+                minlength="10"></textarea>
+      <div class="error" *ngIf="(descripcion.invalid && (descripcion.touched || f.submitted))">
+        <small *ngIf="descripcion.errors?.['required']">La descripción es obligatoria.</small>
+        <small *ngIf="descripcion.errors?.['minlength']">Debe tener al menos 10 caracteres.</small>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- IMAGEN REPRESENTATIVA -->
+    <div class="form-group">
+      <label>Imagen representativa del proyecto</label>
+      <input id="imagenInput"
+             type="file"
+             accept="image/*"
+             (change)="onImagenChange($event)">
+      <small class="text-muted">Esta imagen se mostrará en la página informativa.</small>
+    </div>
+
+    <!-- DOCUMENTO PRINCIPAL -->
+    <div class="form-group">
+      <label>Documento del proyecto (PDF / Word / etc.)</label>
+      <input id="documentoInput"
+             type="file"
+             accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip,image/*"
+             (change)="onDocumentoChange($event)">
+      <small class="text-muted">Opcional: archivo principal del proyecto.</small>
+    </div>
+
+    <!-- Botón -->
+    <button type="submit"
+            class="btn-primary">
+      Registrar proyecto
+    </button>
+
+  </form>
+</div>

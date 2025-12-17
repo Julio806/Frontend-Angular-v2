@@ -1,0 +1,64 @@
+/* Colores principales */
+:root {
+    --primary-color: #0D3B66; /* Azul Oscuro Institucional */
+    --secondary-color: #F7F9FC; /* Fondo principal (Gris muy claro) */
+    --accent-color: #FFC107; /* Amarillo de acento para contrastar */
+}
+
+/* 1. Estilos de la Barra de Navegación */
+/* Quitamos el background-color de aquí ya que lo pusimos inline en el HTML para forzarlo */
+.navbar-custom {
+    padding: 1rem;
+}
+
+.navbar-custom .nav-link {
+    /* Forzamos el color blanco de las letras */
+    color: #fff !important; 
+    margin-right: 15px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: var(--accent-color) !important; 
+}
+
+/* 2. Estilos del Contenido Principal */
+.main-container {
+    background-color: var(--secondary-color);
+    min-height: 100vh;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+/* 3. Estilos para los Logos Institucionales */
+.logo-top {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* 4. Estilos de las Tarjetas (Dashboard) */
+.admin-stat-card {
+    border: none;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-5px);
+    /* Sombra profunda para destacar el hover */
+    box-shadow: 0 1rem 3rem rgba(0,0,0,0.175) !important; 
+    cursor: pointer;
+}
+
+/* Estilos de la lista de actividad para que se vea limpio */
+.list-group-item {
+    padding: 0.75rem 0;
+    background-color: transparent !important;
+    border-color: #eee;
+}
+.list-group-item:last-child {
+    border-bottom: none;
+}

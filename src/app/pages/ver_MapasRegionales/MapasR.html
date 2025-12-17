@@ -1,0 +1,107 @@
+<nav class="navbar-superior">
+    <div class="logo-container">
+        
+        <img src="/Imegenes/pleca_educacion_dic24.png" alt="Logo de Educación">
+        <img src="/Imegenes/pleca_tecnm.jpg" alt="Logo de TecNM">
+        <img src="/Imegenes/Imagen1.png" alt="Logo de Chiapas">
+    </div>
+</nav>
+
+<nav class="navbar-inferior">
+    <div class="titulo-navbar">
+        Mapas Regionales 
+    </div>
+</nav>
+
+<div class="contenedor-vista">
+    
+    <header class="header-vista">
+        <h2>Mapa de Actores Regionales</h2>
+        <button class="btn-accion-principal btn-refrescar" (click)="loadRegionalBorders()">
+             <svg viewBox="0 0 512 512" width="16" height="16"><path fill="white" d="M105.1 202.6c11.9-25.6 44.5-31.4 69.1-17l17.4 9.8 1.4 2.5 17.1-9.6c11.9-6.7 25.9-5.1 36.9 4.3l70 60.1 2.3 2 17.5-9.8c24.6-14.1 57.2-8.3 69.1 17l1.7 3.6 3.6-1.7c25.6-11.9 31.4-44.5 17-69.1l-9.8-17.4-2.5-1.4 9.6-17.1c6.7-11.9 5.1-25.9-4.3-36.9L392.3 84.8l-2-2-17.5 9.8c-24.6 14.1-57.2 8.3-69.1-17l-1.7-3.6-3.6 1.7c-25.6 11.9-31.4 44.5-17 69.1l9.8 17.4 2.5 1.4-9.6 17.1c-6.7 11.9-5.1 25.9 4.3 36.9L184.8 427.2l2 2 17.5-9.8c24.6-14.1 57.2-8.3 69.1 17l1.7 3.6 3.6-1.7c25.6-11.9 31.4-44.5 17-69.1l-9.8-17.4-2.5-1.4 9.6-17.1c-6.7 11.9-5.1 25.9-4.3-36.9L107.1 84.8l-2-2-17.5 9.8c-24.6 14.1-57.2 8.3-69.1 17l-1.7 3.6-3.6-1.7c-25.6 11.9-31.4 44.5-17 69.1zM512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256zm-256 0c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"/></svg>
+             Actualizar Mapa
+        </button>
+    </header>
+
+    <div class="row h-100">
+        
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"> Filtros Regionales</h5>
+                </div>
+                <div class="card-body">
+                    
+                    <h6 class="mt-2">Eslabón de la Cadena:</h6>
+                    <div *ngFor="let eslabon of eslabones" class="form-check">
+                        <input class="form-check-input" type="checkbox" [id]="eslabon" [(ngModel)]="filterEslabones[eslabon]">
+                        <label class="form-check-label" [for]="eslabon">{{ eslabon }}</label>
+                    </div>
+
+                    <h6 class="mt-3">Certificaciones:</h6>
+                    <div *ngFor="let cert of certificaciones" class="form-check">
+                        <input class="form-check-input" type="checkbox" [id]="cert" [(ngModel)]="filterCertificaciones[cert]">
+                        <label class="form-check-label" [for]="cert">{{ cert }}</label>
+                    </div>
+
+                    <h6 class="mt-3">Conexión Tecnológica:</h6>
+                    <select class="form-select" [(ngModel)]="selectedTec">
+                        <option value="">-- Seleccionar --</option>
+                        <option *ngFor="let tec of tecnologicos" [value]="tec">{{ tec }}</option>
+                    </select>
+
+                    <button class="btn btn-primary w-100 mt-4" (click)="applyFilters()">Aplicar Filtros</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 position-relative">
+            <div style="height: 100%; min-height: 600px; border-radius: 8px; overflow: hidden; position: relative;">
+                
+                <div id="map-container" style="height: 100%; width: 100%; z-index: 1;"></div> 
+
+                <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center bg-light" 
+                style="position: absolute; inset: 0; z-index: 1000; opacity: 0.9;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando mapa...</span>
+                    </div>
+                    <p class="ms-3">Cargando mapa y datos regionales...</p>
+                </div>
+            </div>
+
+            <div *ngIf="isPanelOpen && selectedRegionData" 
+                class="card text-white bg-dark shadow-lg" 
+                style="position: absolute; top: 20px; right: 20px; z-index: 1010; width: 350px;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">{{ selectedRegionData.nombreRegion }}</h5>
+                    <button type="button" class="btn-close btn-close-white" (click)="closeInfoPanel()"></button>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-6">Actores Identificados:</dt>
+                        <dd class="col-sm-6 text-end">{{ selectedRegionData.actoresIdentificados }}</dd>
+                        
+                        <dt class="col-sm-6">Total Productores:</dt>
+                        <dd class="col-sm-6 text-end">{{ selectedRegionData.totalProductores }}</dd>
+
+                        <dt class="col-sm-6">Altitud Promedio:</dt>
+                        <dd class="col-sm-6 text-end">{{ selectedRegionData.altitudPromedio }} msnm</dd>
+
+                        <dt class="col-sm-6">Producción Estimada:</dt>
+                        <dd class="col-sm-6 text-end">{{ selectedRegionData.produccionEstimada }}</dd>
+                        
+                        <dt class="col-sm-6">Variedades Predominantes:</dt>
+                        <dd class="col-sm-6 text-end">
+                            <span *ngFor="let variedad of selectedRegionData.variedadesPredominantes">{{ variedad }}<br></span>
+                        </dd>
+                    </dl>
+                    <button class="btn btn-warning w-100 mt-4" (click)="generateReport()">
+                        <i class="fas fa-file-pdf me-2"></i> Generar Reporte Regional
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div> 
+    
+</div>

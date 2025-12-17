@@ -1,0 +1,63 @@
+/* =========================================================
+   ESTILOS INSTITUCIONALES Y DE VISTA
+   ========================================================= */
+
+/* ===== Base y Navbars ===== */
+/* Ajusta el body si no lo tienes definido globalmente */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #111827;
+    background-color: #f7f7f7;
+    margin: 0;
+}
+.navbar-superior { 
+    background: #ffffff; 
+    padding: 0.5rem 1.5rem; 
+    border-bottom: 3px solid #003b6f; 
+}
+.logo-container { 
+    display: flex; 
+    align-items: center; 
+    /* Alineación a la izquierda */
+    justify-content: flex-start; 
+    gap: 1.5rem; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+.logo-container img { height: 50px; object-fit: contain; }
+.navbar-inferior { background: #003b6f; color: #ffffff; padding: 0.8rem 1.5rem; }
+.titulo-navbar { font-weight: 700; font-size: 1.25rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+
+/* ===== Contenedor Principal y Header (Aplica a la nueva estructura) ===== */
+.contenedor-vista { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.header-vista { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #e5e7eb; }
+.header-vista h2 { color: #003b6f; font-size: 2.2em; font-weight: 800; margin: 0; }
+
+/* ===== Botones de Acción Global (Asegura que los estilos del botón 'Actualizar Mapa' funcionen) ===== */
+.btn-accion-principal, .btn-accion-secundario {
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+    text-decoration: none;
+    justify-content: center;
+    text-align: center;
+}
+.btn-accion-principal { background: #003b6f; color: white; }
+.btn-accion-principal:hover { background-color: #1e70bf; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+.btn-accion-principal svg { fill: white; }
+
+.btn-accion-secundario {
+    background: #f3f4f6;
+    color: #003b6f; 
+    border: 1px solid #e5e7eb;
+    font-size: 0.85rem;
+}
+.btn-accion-secundario:hover { background-color: #e5e7eb; }
+.btn-accion-secundario svg { fill: #003b6f; }

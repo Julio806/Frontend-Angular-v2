@@ -1,0 +1,116 @@
+:root {
+  --primary-color: #0D3B66;
+  --secondary-color: #3D9970;
+  --bg-light: #F7F9FC;
+  --shadow-color: rgba(0,0,0,0.1);
+  --hover-transition: 0.3s ease;
+}
+
+.welcome-container {
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 10px var(--shadow-color);
+  -webkit-box-shadow: 0 4px 10px var(--shadow-color);
+  -moz-box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.stats-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.stat-card {
+  background-color: var(--bg-light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 200px;
+  -webkit-transition: -webkit-transform var(--hover-transition);
+  transition: -webkit-transform var(--hover-transition);
+  -o-transition: transform var(--hover-transition);
+  transition: transform var(--hover-transition);
+  transition: transform var(--hover-transition), -webkit-transform var(--hover-transition);
+  will-change: transform;
+}
+
+.stat-card:hover {
+  -webkit-transform: translateY(-5px);
+      -ms-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+.stat-card i {
+  color: var(--primary-color);
+}
+
+.quick-actions {
+  margin-top: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+  margin: 0.5rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: all var(--hover-transition);
+  -o-transition: all var(--hover-transition);
+  transition: all var(--hover-transition);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #082a49;
+  -webkit-transform: translateY(-2px);
+      -ms-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.btn-primary:focus {
+  outline: 3px solid rgba(13, 59, 102, 0.3);
+  outline-offset: 2px;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #2f7a5b;
+  -webkit-transform: translateY(-2px);
+      -ms-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.btn-secondary:focus {
+  outline: 3px solid rgba(61, 153, 112, 0.3);
+  outline-offset: 2px;
+}
+
+/* Mejora de accesibilidad para usuarios de teclado */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 3px solid #4A90E2;
+  outline-offset: 2px;
+}

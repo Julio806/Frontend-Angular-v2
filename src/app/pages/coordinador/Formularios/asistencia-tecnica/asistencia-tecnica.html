@@ -1,0 +1,206 @@
+<div class="form-container">
+
+    <h2 class="titulo">Asistencia técnica</h2>
+
+    <section class="card-form">
+        <h3 class="subtitulo">Ficha para instituciones que ofrecen asistencia</h3>
+
+        <div class="form-grid">
+
+            <div class="form-group **ancho-50**"> 
+                <div class="label-with-tooltip">
+                    <label>A. Nombre de la institución / equipo técnico:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Nombre legal o comercial de la organización que prestará la asistencia.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.nombreInstitucion" name="nombreInstitucion">
+            </div>
+
+            <div class="form-group **ancho-70**">
+                <div class="label-with-tooltip">
+                    <label>B. Tipo de asistencia (catálogo proyectos):</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Describe la naturaleza del servicio. ej: asesoría técnica, diagnóstico de suelos,
+                            capacitación, etc.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.tipoAsistencia" name="tipoAsistencia"
+                    placeholder="">
+            </div>
+
+            <div class="form-group full">
+                <div class="label-with-tooltip">
+                    <label>C. Especialistas disponibles (nominal):</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Lista de los nombres y/o perfiles técnicos (ej. agrónomo, veterinario, abogado) que
+                            prestarán el servicio.
+                        </span>
+                    </div>
+                </div>
+                <textarea rows="3" [(ngModel)]="asistencia.especialistas" name="especialistas"></textarea>
+            </div>
+
+            <div class="form-group **ancho-70**">
+                <div class="label-with-tooltip">
+                    <label>D. Región donde pueden operar:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Estados, municipios o zonas geográficas específicas donde la institución tiene capacidad de
+                            atención.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.regionOperacion" name="regionOperacion">
+            </div>
+
+            <div class="form-group **ancho-30**">
+                <div class="label-with-tooltip">
+                    <label>E. Requisitos del servicio:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Condiciones necesarias para prestar la asistencia. ej: acceso a parcela, contar con datos
+                            previos, etc.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.requisitosServicio" name="requisitosServicio"
+                    placeholder="">
+            </div>
+
+            <div class="form-group **ancho-50**">
+                <div class="label-with-tooltip">
+                    <label>F. Capacidad de atención (número estimado de productores):</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Cantidad máxima de personas o proyectos que pueden ser atendidos en un periodo
+                            (mensual/anual).
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.capacidadAtencion" name="capacidadAtencion"
+                    placeholder="">
+            </div>
+
+            <div class="form-group **ancho-50**">
+                <div class="label-with-tooltip">
+                    <label>G. Costos (si aplica):</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Indicar si el servicio tiene costo y la unidad de cobro. (ej: $1,000 / visita; sin costo).
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.costos" name="costos" placeholder="">
+            </div>
+
+            <div class="form-group full">
+                <div class="label-with-tooltip">
+                    <label>H. Documentos institucionales:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Adjuntar documentos de respaldo de la institución (ej. registro legal, acta constitutiva,
+                            portafolio de servicios).
+                        </span>
+                    </div>
+                </div>
+                <input type="file" (change)="seleccionarArchivo($event)" accept=".pdf,.doc,.docx">
+            </div>
+
+        </div>
+
+    </section>
+
+    <hr class="separator"/>
+
+    <section class="card-form">
+        <h3 class="subtitulo">Ficha para solicitudes de asistencia</h3>
+
+        <div class="form-grid **solicitudes-grid**">
+
+            <div class="form-group **ancho-70**">
+                <div class="label-with-tooltip">
+                    <label>I. Nombre del solicitante:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Nombre completo de la persona o contacto responsable de la solicitud.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.nombreSolicitante" name="nombreSolicitante">
+            </div>
+
+            <div class="form-group **ancho-50**">
+                <div class="label-with-tooltip">
+                    <label>J. Tipo:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Tipo de entidad que requiere la asistencia: productor individual, cooperativa, empresa, etc.
+                        </span>
+                    </div>
+                </div>
+                <select [(ngModel)]="asistencia.tipoSolicitante" name="tipoSolicitante" (ngModelChange)="manejarCambioTipoSolicitante()">
+                    <option value="" disabled selected>Seleccione…</option>
+                    <option *ngFor="let t of tiposSolicitante">{{ t }}</option>
+                </select>
+            </div>
+
+            <div class="form-group **ancho-50**" *ngIf="mostrarCampoOtroTipo">
+                <div class="label-with-tooltip">
+                    <label>J. Especifique Tipo (Otro):</label>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.tipoSolicitanteOtro" name="tipoSolicitanteOtro" 
+                    placeholder="Escriba el tipo de entidad">
+            </div>
+
+            <div class="form-group full">
+                <div class="label-with-tooltip">
+                    <label>K. Problema específico:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Detalle del problema o necesidad que requiere la intervención técnica (ej. baja producción,
+                            plaga no identificada).
+                        </span>
+                    </div>
+                </div>
+                <textarea rows="3" [(ngModel)]="asistencia.problemaEspecifico" name="problemaEspecifico"></textarea>
+            </div>
+
+            <div class="form-group full">
+                <div class="label-with-tooltip">
+                    <label>L. Ubicación:</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Lugar exacto donde se requiere la asistencia (ej: estado, municipio / localidad, coordenadas
+                            si es posible).
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="asistencia.ubicacion" name="ubicacion"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="contenedor-btn">
+            <button class="btn-guardar" (click)="guardar()">Guardar información</button>
+        </div>
+    </section>
+
+</div>

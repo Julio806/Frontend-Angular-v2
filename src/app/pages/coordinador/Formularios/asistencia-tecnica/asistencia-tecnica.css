@@ -1,0 +1,356 @@
+/* =========================================================
+   NAVBAR SUPERIOR (CON LOGOS)
+   ========================================================= */
+.navbar-superior {
+    background-color: #ffffff;
+    padding: 10px 25px;
+    border-bottom: 2px solid #dcdcdc;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-top {
+    height: 55px;
+    object-fit: contain;
+}
+
+/* =========================================================
+   NAVBAR INFERIOR
+   ========================================================= */
+.navbar-inferior {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 15px 25px;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+.form-container {
+    /* Ajuste: Contenedor un poco más estrecho y centrado para escritorio */
+    max-width: 1100px; 
+    margin: 0 auto;
+    padding: 40px 20px; /* Reducción de padding lateral para desktop */
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Espacio consistente entre secciones */
+}
+
+.titulo {
+    color: #003366;
+    font-weight: bold;
+    border-left: 8px solid #003366;
+    padding-left: 15px;
+    font-size: 32px; /* Ligeramente más grande */
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   TARJETAS (CARDS)
+   ========================================================= */
+.card-form {
+    width: 100%;
+    background: #ffffff;
+    padding: 30px; /* Ligeramente más compacto */
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra más suave y moderna */
+    border: 1px solid #e0e0e0;
+}
+
+.subtitulo {
+    margin-bottom: 25px;
+    color: #003366;
+    font-size: 24px;
+    border-left: 6px solid #5fa8d3; /* Color secundario para subtítulo */
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+/* Separador horizontal ajustado para que sea visualmente menos brusco */
+.form-container > hr {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 0 0 20px 0;
+}
+
+/* =========================================================
+   GRID DEL FORMULARIO - ASIMETRÍA
+   ========================================================= */
+.form-grid {
+    display: grid;
+    /* ASIMETRÍA 1: Una columna más ancha (60%) y otra más estrecha (40%). */
+    /* La suma de las fracciones (fr) es 5. (3/5 = 60%, 2/5 = 40%) */
+    grid-template-columns: 3fr 2fr;
+    gap: 25px 35px; /* Espacio consistente entre elementos */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Los campos con 'full' siempre ocupan el ancho completo (3fr + 2fr) */
+.form-group.full {
+    grid-column: span 2;
+}
+
+/* Ajuste específico para la Ficha 1: A/B, D/E, F/G */
+/* D. Región y E. Requisitos (igual que la grilla 3fr 2fr) - No se necesita regla extra */
+
+/* Ficha 2: I/J */
+.card-form:nth-of-type(2) .form-grid {
+    /* ASIMETRÍA 2: Para la segunda ficha, invertimos la asimetría o usamos otra proporción. 
+       Aquí usamos 2fr 1fr, para que el Nombre (I) ocupe más espacio (66%) que el Tipo (J) (33%). 
+       La suma de las fracciones (fr) es 3. */
+    grid-template-columns: 2fr 1fr;
+}
+
+/* El campo opcional 'Otro' (J. Especifique Tipo) debe alinearse con 'J. Tipo' */
+.card-form:nth-of-type(2) .form-grid .form-group:nth-child(3) {
+    grid-column: 2 / 3; /* Coloca 'Otro' en la segunda columna (1fr) */
+    /* Aseguramos que solo el campo 'Otro' no inicie una nueva fila en el layout de 2fr 1fr */
+}
+
+/* Ajustamos el textarea K y el input L para que se mantengan 'full' */
+.card-form:nth-of-type(2) .form-grid .form-group.full {
+    grid-column: span 2;
+}
+
+/* =========================================================
+   CAMPOS DE TEXTO, SELECT, TEXTAREA (Ajustes de espacio)
+   ========================================================= */
+label {
+    font-weight: 600;
+    /* El margen ahora está en .label-with-tooltip */
+    color: #333333;
+    font-size: 15px;
+}
+
+input,
+select,
+textarea {
+    padding: 11px 13px; /* Reducción ligera para compactar */
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: #ffffff;
+    border-color: #003366;
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.15); /* Sombra tipo ring más sutil */
+    outline: none;
+}
+
+/* Mejora visual para textarea */
+textarea {
+    resize: vertical;
+    min-height: 80px; /* Reducción ligera para compactar (era 85px) */
+}
+
+/* =========================================================
+   BOTÓN PRINCIPAL
+   ========================================================= */
+.contenedor-btn {
+    margin-top: 30px;
+    padding-top: 15px; /* Espacio adicional para separar del último campo */
+    border-top: 1px solid #eee;
+    text-align: right; /* Botón a la derecha */
+}
+
+.btn-guardar {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 8px rgba(0, 51, 102, 0.3);
+}
+
+.btn-guardar:hover {
+    background-color: #0058b4;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0, 51, 102, 0.4);
+}
+
+/* =========================================================
+   TOOLTIP
+   ========================================================= */
+/* 1. Contenedor que alinea la etiqueta y el tooltip */
+.label-with-tooltip {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+/* 2. Asegurarse que la etiqueta dentro del contenedor no tenga margen duplicado */
+.label-with-tooltip label {
+    margin-bottom: 0;
+}
+
+/* 3. Contenedor principal del ícono de información (define la posición relativa) */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    cursor: help;
+    flex-shrink: 0; /* Evita que el contenedor del tooltip se comprima */
+}
+
+/* 4. Estilo del ícono '?' */
+.info-icon {
+    color: #ffffff;
+    background-color: #003366;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: bold;
+    cursor: help;
+}
+
+/* 5. El cuadro de texto del tooltip (inicialmente oculto) */
+.tooltip-text {
+    visibility: hidden;
+    width: 280px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 100; /* Alto z-index para asegurar visibilidad */
+    bottom: 100%;
+    left: 50%;
+    margin-left: -140px;
+    margin-bottom: 12px;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: normal;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 6. Flecha inferior del tooltip */
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+/* 7. Mostrar el tooltip al pasar el ratón */
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (BREAKPOINTS)
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Tablets grandes (Diseño más equilibrado, pero asimétrico)
+   --------------------------------------------------------- */
+@media (max-width: 1200px) {
+    .form-container {
+        padding: 40px 30px;
+        max-width: 950px;
+    }
+}
+
+/* ---------------------------------------------------------
+   Tablets (Colapso parcial a 100% para campos "full" y manteniendo asimetría para campos pequeños)
+   --------------------------------------------------------- */
+@media (max-width: 800px) {
+    .form-grid {
+        /* Para que el diseño se vea mejor en tablet, hacemos una división más uniforme, ej. 50%/50% */
+        grid-template-columns: 1fr 1fr; 
+        gap: 20px;
+    }
+    
+    /* En la Ficha 2, volvemos a la proporción 50%/50% */
+    .card-form:nth-of-type(2) .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* El campo 'Otro' (J. Especifique Tipo) ahora ocupa la segunda columna (derecha) */
+    .card-form:nth-of-type(2) .form-grid .form-group:nth-child(3) {
+        grid-column: 2 / 3;
+    }
+
+    /* Los campos 'full' siguen ocupando 100% */
+    .form-group.full {
+        grid-column: span 2;
+    }
+
+    .form-container {
+        padding: 30px 20px;
+    }
+}
+
+/* ---------------------------------------------------------
+   Móvil (Todo a una sola columna para máxima usabilidad)
+   --------------------------------------------------------- */
+@media (max-width: 580px) {
+    .form-grid {
+        /* Colapsa todo a una sola columna */
+        grid-template-columns: 1fr;
+        gap: 25px; /* Espacio vertical cómodo */
+    }
+
+    .form-group.full {
+        grid-column: span 1;
+    }
+    
+    /* La ficha 2 colapsa a una columna, y el campo 'Otro' ya no necesita alineación específica */
+    .card-form:nth-of-type(2) .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .card-form:nth-of-type(2) .form-grid .form-group:nth-child(3) {
+        grid-column: span 1;
+    }
+
+    .form-container {
+        padding: 20px 15px; /* Más compacto en móvil */
+        gap: 30px;
+    }
+
+    .card-form {
+        padding: 20px;
+    }
+
+    .titulo, .subtitulo {
+        font-size: 20px;
+        padding-left: 10px;
+    }
+
+    .contenedor-btn {
+        text-align: center;
+    }
+}

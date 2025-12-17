@@ -1,0 +1,118 @@
+<section id="login-section" class="vh-100 d-flex align-items-center justify-content-center bg-blue-light py-0">
+  <div class="container-fluid h-100 p-0">
+    <div class="row g-0 h-100 justify-content-center">
+
+      <!-- Columna del video -->
+      <div class="col-lg-6 col-md-6 d-none d-md-flex position-relative overflow-hidden p-0 h-100 video-column-animated">
+        <video autoplay muted loop id="bg-video">
+          <source src="Imegenes/video1.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+
+        <div class="overlay-video-content">
+          <div class="text-white p-5 d-flex flex-column justify-content-end h-100 wow animate_animated animate_fadeInUp">
+            <h2 class="fw-bolder display-5 mb-2">Cultivo y Proceso</h2>
+            <p class="lead fw-light">Accede a los informes detallados que transforman la calidad de cada grano de café.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna del formulario -->
+      <div class="col-lg-4 col-md-6 col-sm-8 col-10 d-flex align-items-center justify-content-center bg-white h-100 p-4 p-md-5 login-column-right">
+        <div class="w-100 login-content-wrapper wow animate_animated animate_fadeInRight">
+
+          <div class="text-center mb-4">
+            <div class="coffee-logo mb-3">
+              <i class="bi bi-cup-hot-fill text-primary-custom wow animate_animated animate_heartBeat" style="font-size: 3.5rem;"></i>
+            </div>
+            <h1 class="h3 fw-bold text-primary-custom mb-2">Acceso a Gestión Cafetalera ☕</h1>
+            <p class="text-secondary small">Bienvenido. Ingresa tus credenciales.</p>
+          </div>
+
+          <!-- ✅ Angular Form -->
+          <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+            <div class="mb-3 form-group-animated">
+              <label for="correo" class="form-label text-secondary small">Correo Electrónico</label>
+              <input
+                type="email"
+                id="correo"
+                class="form-control form-control-light"
+                placeholder="tu.correo@dominio.com"
+                [(ngModel)]="correo"
+                name="correo"
+                required
+                email
+              />
+              <div *ngIf="loginForm.submitted && !correo" class="text-danger small mt-1">
+                Ingresa un correo válido.
+              </div>
+            </div>
+
+            <div class="mb-4 form-group-animated">
+              <label for="password" class="form-label text-secondary small">Contraseña</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control form-control-light"
+                placeholder="••••••••"
+                [(ngModel)]="password"
+                name="password"
+                required
+              />
+              <div *ngIf="loginForm.submitted && !password" class="text-danger small mt-1">
+                La contraseña es obligatoria.
+              </div>
+            </div>
+
+            <!-- Mensaje de error -->
+            <div *ngIf="errorMessage" class="alert alert-danger-custom animate_animated animate_fadeInDown">
+              <i class="bi bi-x-octagon-fill me-2"></i> {{ errorMessage }}
+            </div>
+
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary-custom btn-lg fw-bold login-btn-hover">
+                <i class="bi bi-box-arrow-in-right me-2"></i> INICIAR SESIÓN
+              </button>
+            </div>
+
+            <div class="text-center">
+              <a href="#" class="text-accent small text-decoration-none" data-bs-toggle="modal"
+                data-bs-target="#forgotPasswordModal">
+                ¿Olvidaste tu Contraseña?
+              </a>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal para recuperar contraseña -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark-card border-secondary">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title text-white" id="forgotPasswordModalLabel">
+          <i class="bi bi-shield-lock me-2"></i> Recuperar Acceso
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-secondary-light small">
+          Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
+        </p>
+        <form>
+          <div class="mb-3">
+            <input type="email" class="form-control form-control-dark" placeholder="Correo Electrónico Registrado" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-top-0">
+        <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary-custom">Enviar Enlace</button>
+      </div>
+    </div>
+  </div>
+</div>

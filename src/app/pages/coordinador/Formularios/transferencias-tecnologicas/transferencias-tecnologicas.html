@@ -1,0 +1,174 @@
+<div class="contenedor">
+
+    <div class="card-form">
+        <h2>Transferencias tecnológicas</h2>
+
+        <div class="grid">
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Nombre de la tecnología / equipo / laboratorio / docente en colaboración</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Indique el nombre completo y específico de lo que se desea transferir o poner a disposición.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="datos.nombreTecnologia" name="nombreTecnologia" required>
+            </div>
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Tipo</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Clasifique la naturaleza de lo ofertado (ej: un método, un software específico, un laboratorio).
+                        </span>
+                    </div>
+                </div>
+                <select [(ngModel)]="datos.tipo" name="tipo" required>
+                    <option value="" disabled selected>Seleccione…</option>
+                    <option *ngFor="let tipo of tiposTecnologia" [value]="tipo">{{ tipo }}</option>
+                </select>
+            </div>
+
+            <div class="campo campo-full" *ngIf="mostrarOtroTipo">
+                <div class="label-with-tooltip">
+                    <label>Especifique Tipo de Tecnología *</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Especifique la naturaleza de la tecnología o servicio si no se encuentra en el listado desplegable.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="datos.especificacionOtroTipo" name="especificacionOtroTipo" placeholder="" required>
+            </div>
+            
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Descripción (máx. 200 palabras)</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Breve resumen del objetivo, función principal y el valor que aporta esta tecnología o servicio.
+                        </span>
+                    </div>
+                </div>
+                <textarea rows="4" maxlength="200" [(ngModel)]="datos.descripcion" name="descripcion" required></textarea>
+            </div>
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Capacidades técnicas</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Características técnicas detalladas: rangos de medición, especificaciones de hardware, rendimiento, etc.
+                        </span>
+                    </div>
+                </div>
+                <textarea rows="3" [(ngModel)]="datos.capacidades" name="capacidades" required></textarea>
+            </div>
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Servicios que pueden prestarse</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            ¿Qué análisis, pruebas o consultorías específicas pueden ser realizadas con esta tecnología o equipo?
+                        </span>
+                    </div>
+                </div>
+                <textarea rows="3" [(ngModel)]="datos.servicios" name="servicios"></textarea>
+            </div>
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Requisitos para uso</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            ¿Qué documentación, capacitación previa o condiciones de muestra son necesarias para acceder al servicio o equipo?
+                        </span>
+                    </div>
+                </div>
+                <textarea rows="3" [(ngModel)]="datos.requisitos" name="requisitos" required></textarea>
+            </div>
+
+            <div class="campo">
+                <div class="label-with-tooltip">
+                    <label>Disponibilidad</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Horarios, meses o términos específicos en los que la tecnología/servicio está accesible para el público externo.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="datos.disponibilidad" name="disponibilidad" required>
+            </div>
+
+            <div class="campo">
+                <div class="label-with-tooltip">
+                    <label>Costos o convenios necesarios</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Información sobre tarifas por servicio o si se requiere un convenio específico con la institución.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="datos.costos" name="costos">
+            </div>
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Responsable institucional</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Nombre y cargo de la persona o departamento encargado de administrar y dar seguimiento a la transferencia tecnológica.
+                        </span>
+                    </div>
+                </div>
+                <input type="text" [(ngModel)]="datos.responsable" name="responsable" required>
+            </div>
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Documentos técnicos, manuales o fichas del equipo</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Archivos que certifiquen o expliquen en detalle las especificaciones y el uso del equipo o tecnología.
+                        </span>
+                    </div>
+                </div>
+                <input type="file" (change)="seleccionarArchivo($event,'documentos')">
+            </div>
+
+            <div class="campo campo-full">
+                <div class="label-with-tooltip">
+                    <label>Carta de autorización institucional</label>
+                    <div class="tooltip-container">
+                        <i class="info-icon">?</i>
+                        <span class="tooltip-text">
+                            Documento oficial donde el director o autoridad competente autoriza la oferta de esta tecnología o servicio.
+                        </span>
+                    </div>
+                </div>
+                <input type="file" (change)="seleccionarArchivo($event,'carta')">
+            </div>
+
+        </div>
+
+        <div class="contenedor-btn">
+            <button class="btn-guardar" (click)="guardarTransferencias()">Guardar información</button>
+        </div>
+    </div>
+
+</div>

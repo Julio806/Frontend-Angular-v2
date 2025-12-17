@@ -1,0 +1,107 @@
+<div class="admin-dashboard-layout">
+    
+    <header class="bg-white border-bottom py-2 shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="/Imegenes/pleca_tecnm.jpg" alt="Logo de TecNM" class="logo-top me-3">
+                <img src="/Imegenes/pleca_educacion_dic24.png" alt="Logo de Educación" class="logo-top me-3">
+                <img src="/Imegenes/Imagen1.png" alt="Logo de Chiapas" class="logo-top">
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="text-secondary fw-bold me-3 d-none d-md-block">
+                    **Administrador Central:** Tec. Frontera Comalapa
+                </span>
+                <i class="bi bi-person-circle fs-4 text-secondary"></i>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom" style="background-color: #0D3B66 !important;">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-white" href="#"> Coordinacion del Cafe</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" 
+                    aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="adminNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Gestión Tecnológicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Registrar proyecto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Registrar eventos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Registros</a></li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-warning fw-bold" onclick="alert('Cerrar Sesión')">Cerrar Sesión</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4 main-container">
+        <div class="admin-dashboard-summary">
+            <h2 class="mb-4 text-primary">Resumen</h2>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card p-3 shadow-lg admin-stat-card border-info border-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="card-title text-info fw-bolder mb-0">254</h3>
+                                <p class="card-text text-muted">Tecnológicos Registrados</p>
+                            </div>
+                            <i class="bi bi-buildings fs-1 text-info opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3 shadow-lg admin-stat-card border-success border-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="card-title text-success fw-bolder mb-0">1280</h3>
+                                <p class="card-text text-muted">Proyectos Activos</p>
+                            </div>
+                            <i class="bi bi-briefcase-fill fs-1 text-success opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3 shadow-lg admin-stat-card border-warning border-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="card-title text-warning fw-bolder mb-0">8</h3>
+                                <p class="card-text text-muted">Eventos</p>
+                            </div>
+                            <i class="bi bi-graph-up-arrow fs-1 text-warning opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4 shadow-lg">
+                <h4 class="text-primary mb-3">Actividad Reciente</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="badge bg-success me-2">Actualización</span> El Tec. de Tuxtla Gutiérrez subió un avance.
+                        </div>
+                        <small class="text-muted">Hace 5 min</small>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="badge bg-primary me-2">Nuevo</span> Nuevo proyecto registrado por Tec. de Oaxaca.
+                        </div>
+                        <small class="text-muted">Hace 1 hora</small>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
